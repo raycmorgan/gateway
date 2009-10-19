@@ -16,7 +16,7 @@ returning the response is pretty much useless to Node.js web applications. Inste
 we mix the specification of those libraries with the simple API of Node.js's own
 HTTP server.
 
-Here is a simple application that utilizes the Static middleware.
+Here is a simple application that utilizes the CommonLogger and Static middleware.
 
     var Gateway = require('../lib/gateway.js');
 
@@ -32,7 +32,8 @@ Here is a simple application that utilizes the Static middleware.
 
     
     var builder = Gateway.createBuilder();
-
+    
+    builder.use(Gateway.Middleware.CommonLogger);
     builder.use(Gateway.Middleware.Static, {
       root: node.path.dirname(__filename),
       urls: ["/favicon.ico", "/css"]
