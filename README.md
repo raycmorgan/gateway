@@ -42,6 +42,10 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
 
     builder.boot(Gateway.Handler.NodeHttp, {port: 8000});
 
+Boot the demo app with:
+
+    node test/demo.js
+
 ### TODO
 
 * Tests!
