@@ -11,6 +11,7 @@ var builder = Gateway.createBuilder();
 
 builder.use(Gateway.Middleware.Lint);
 builder.use(Gateway.Middleware.CommonLogger);
+builder.use(Gateway.Middleware.ContentType);
 builder.use(Gateway.Middleware.Static, {
   root: node.path.dirname(__filename),
   urls: ["/favicon.ico", "/css", "/images"]
