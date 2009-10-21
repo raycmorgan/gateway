@@ -1,11 +1,9 @@
 var Gateway = require('../lib/gateway.js');
 
 function MyApp(request, response) {
-  return {
-    status: 200,
-    headers: {'Content-Type': 'text/plain'},
-    body: "Hello World!"
-  };
+  response.sendHeader(200, {'Content-Type': 'text/plain'});
+  response.sendBody('Hello World!');
+  response.finish();
 }
 
 
@@ -15,9 +13,8 @@ builder.use(Gateway.Middleware.Lint);
 builder.use(Gateway.Middleware.CommonLogger);
 builder.use(Gateway.Middleware.Static, {
   root: node.path.dirname(__filename),
-  urls: ["/favicon.ico", "/css"]
+  urls: ["/favicon.ico", "/css", "/images"]
 });
-builder.use(Gateway.Middleware.SimpleResponse);
 builder.use(MyApp);
 
 builder.boot(Gateway.Handler.NodeHttp, {port: 8000});
