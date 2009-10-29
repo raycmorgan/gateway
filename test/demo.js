@@ -1,8 +1,12 @@
 var Gateway = require('../lib/gateway.js');
 
 function MyApp(request, response) {
-  response.sendHeader(200, {'Content-Type': 'text/plain'});
-  response.sendBody('Hello World!');
+  var contents = 'Hello World!';
+  response.sendHeader(200, {
+    'content-type': 'text/plain',
+    'content-length': contents.length
+  });
+  response.sendBody(contents);
   response.finish();
 }
 
