@@ -14,6 +14,7 @@ function MyApp(request, response) {
 var builder = Gateway.createBuilder();
 
 builder.use(Gateway.Middleware.Lint);
+builder.use(Gateway.Middleware.Head);
 builder.use(Gateway.Middleware.CommonLogger);
 builder.use(Gateway.Middleware.ContentType);
 builder.use(Gateway.Middleware.Static, {
