@@ -18,7 +18,7 @@ builder.use(Gateway.Middleware.Head);
 builder.use(Gateway.Middleware.CommonLogger);
 builder.use(Gateway.Middleware.ContentType);
 builder.use(Gateway.Middleware.Static, {
-  root: node.path.dirname(__filename),
+  root: process.path.dirname(__filename),
   urls: ["/favicon.ico", "/css", "/images"]
 });
 builder.use(MyApp);

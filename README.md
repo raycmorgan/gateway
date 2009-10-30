@@ -35,7 +35,7 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
     
     builder.use(Gateway.Middleware.CommonLogger);
     builder.use(Gateway.Middleware.Static, {
-      root: node.path.dirname(__filename),
+      root: process.path.dirname(__filename),
       urls: ["/favicon.ico", "/css"]
     });
     builder.use(MyApp);
