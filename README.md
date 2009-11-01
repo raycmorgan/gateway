@@ -18,7 +18,7 @@ HTTP server.
 
 Here is a simple application that utilizes the CommonLogger and Static middleware.
 
-    var Gateway = require('../lib/gateway.js');
+    var Gateway = require('./../lib/gateway');
 
     function MyApp(request, response) {
       var content = "Hello World";

@@ -1,5 +1,5 @@
-var Gateway = require('../lib/gateway.js');
-var sys = require('/sys.js');
+var Gateway = require('./../lib/gateway');
+var sys = require('sys');
 
 function MyApp(request, response) {
   if (request.requestMethod === 'POST') {

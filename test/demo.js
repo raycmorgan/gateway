@@ -1,4 +1,5 @@
-var Gateway = require('../lib/gateway.js');
+var Gateway = require('./../lib/gateway');
+var path = require('path');
 
 function MyApp(request, response) {
   var contents = 'Hello World!';
@@ -18,7 +19,7 @@ builder.use(Gateway.Middleware.Head);
 builder.use(Gateway.Middleware.CommonLogger);
 builder.use(Gateway.Middleware.ContentType);
 builder.use(Gateway.Middleware.Static, {
-  root: process.path.dirname(__filename),
+  root: path.dirname(__filename),
   urls: ["/favicon.ico", "/css", "/images"]
 });
 builder.use(MyApp);
