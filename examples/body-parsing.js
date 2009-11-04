@@ -2,11 +2,9 @@ var Gateway = require('./../lib/gateway');
 var sys = require('sys');
 
 function MyApp(request, response) {
-  if (request.requestMethod === 'POST') {
-    Gateway.utils.parseURLEncodedBody(request, function (body) {
-      sys.p(body);
-    });
-  }
+  request.post(function (body) {
+    sys.p(body);
+  });
   
   var contents = '\
 <html>            \

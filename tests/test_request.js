@@ -52,6 +52,54 @@ function testHasFormData() {
   
   var req = mock.requestFor('GET', '', {'headers': {'contentType': "text/html"}});
   assertMatch(false, req.hasFormData());
+},
+
+function testParseURLEncodedBody() {
+  var content = "hello=world"
+  var input = mock.createMockInput();
+  
+  var req = mock.requestFor('POST', '', {
+    'input': input,
+    'headers': {
+      'content-type': "application/x-www-form-urlencoded",
+      'content-length': content.length
+    }
+  });
+  
+  var data;
+  req.parseURLEncodedBody(function (body) {
+    data = body;
+  });
+  
+  input.sendData(content);
+  
+  return function () {
+    assertMatch({'hello': 'world'}, data);
+  }
+},
+
+function testParseURLEncodedBodyViaPost() {
+  var content = "hello=world"
+  var input = mock.createMockInput();
+  
+  var req = mock.requestFor('POST', '', {
+    'input': input,
+    'headers': {
+      'content-type': "application/x-www-form-urlencoded",
+      'content-length': content.length
+    }
+  });
+  
+  var data;
+  req.post(function (body) {
+    data = body;
+  });
+  
+  input.sendData(content);
+  
+  return function () {
+    assertMatch({'hello': 'world'}, data);
+  }
 }
 
 ];
@@ -59,8 +107,10 @@ function testHasFormData() {
 exports.tests.map(function (test) {
   return test();
 }).forEach(function (test) {
-  if (typeof(test) === 'function') {
-    test();
-  }
+  process.addListener('exit', function () {
+    if (typeof(test) === 'function') {
+      test();
+    }
+  });
 });
 
