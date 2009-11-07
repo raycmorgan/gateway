@@ -46,6 +46,13 @@ Boot the example app with:
 
     node examples/demo.js
 
+### Note
+
+Gateway currently only runs against the HEAD of Node.js, not the last "official"
+release. This is due to the constantly changing API of Node.js. In the future,
+once Node.js's API is more stable, Gateway will be maintained in 2 branches,
+one for Node.js's latest stable and one for Node.js's HEAD.
+
 ### TODO
 
 * Tests!
