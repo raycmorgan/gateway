@@ -23,8 +23,8 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
     function MyApp(request, response) {
       var content = "Hello World";
       response.sendHeader(200, {
-        'Content-Type': 'text/html',
-        'Content-Length': content.length
+        'content-type': 'text/html',
+        'content-length': content.length
       });
       response.sendBody(content);
       response.finish();
@@ -42,9 +42,9 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
 
     builder.boot(Gateway.Handler.NodeHttp, {port: 8000});
 
-Boot the demo app with:
+Boot the example app with:
 
-    node test/demo.js
+    node examples/demo.js
 
 ### TODO
 
