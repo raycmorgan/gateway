@@ -22,15 +22,15 @@ function MyApp(request, response) {
     'content-type': 'text/html',
     'content-length': contents.length
   });
-  response.sendBody(contents);
-  response.finish();
+  response.write(contents);
+  response.close();
 }
 
 
-var builder = Gateway.createBuilder();
+var builder = new Gateway.Builder();
 
 builder.use(Gateway.Middleware.CommonLogger);
 builder.use(Gateway.Middleware.ContentType);
 builder.use(MyApp);
 
-builder.boot(Gateway.Handler.NodeHttp, {port: 8000});
+builder.listen(Gateway.Handler.NodeHttp, {port: 8000});

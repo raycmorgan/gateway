@@ -26,12 +26,12 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
         'content-type': 'text/html',
         'content-length': content.length
       });
-      response.sendBody(content);
-      response.finish();
+      response.write(content);
+      response.close();
     };
 
     
-    var builder = Gateway.createBuilder();
+    var builder = new Gateway.Builder();
     
     builder.use(Gateway.Middleware.CommonLogger);
     builder.use(Gateway.Middleware.Static, {
@@ -40,7 +40,7 @@ Here is a simple application that utilizes the CommonLogger and Static middlewar
     });
     builder.use(MyApp);
 
-    builder.boot(Gateway.Handler.NodeHttp, {port: 8000});
+    builder.listen(Gateway.Handler.NodeHttp, {port: 8000});
 
 Boot the example app with:
 
@@ -55,10 +55,5 @@ one for Node.js's latest stable and one for Node.js's HEAD.
 
 ### TODO
 
-* Tests!
+* More Tests!
 * Documentation
-* More Middleware
-  * Body Parsing
-  * Multipart Parser
-  * Sessions?
-  * HTTP Caching?
